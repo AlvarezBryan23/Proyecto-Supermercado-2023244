@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="467.0" prefWidth="467.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.bryanalvarez.controller.MenuPrincipalController">
+   <children>
+      <ImageView fitHeight="467.0" fitWidth="467.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/document.jpg" />
+         </image>
+      </ImageView>
+      <MenuBar layoutY="-2.0" prefHeight="25.0" prefWidth="417.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="Modulo">
+            <items>
+                  <MenuItem fx:id="btnCompras" mnemonicParsing="false" onAction="#cliclCom" text="Compras" />
+              <MenuItem fx:id="btnProductos" mnemonicParsing="false" onAction="#cliclProduc" text="Productos" />
+                  <MenuItem fx:id="btnCargoEmpleado" mnemonicParsing="false" onAction="#cliclCargo" text="Cargo Empleado" />
+                  <MenuItem fx:id="btnMenuClientes" mnemonicParsing="false" onAction="#clicClientes" text="Clientes" />
+                  <MenuItem fx:id="btnMenuProveedores" mnemonicParsing="false" onAction="#cliclProve" text="Proveedores" />
+                  <MenuItem fx:id="btnMenuEmpleados" mnemonicParsing="false" onAction="#clicEmple" text="Empleados" />
+                  <MenuItem fx:id="btnTipoProducto" mnemonicParsing="false" onAction="#cliclTipo" text="Tipo de Producto" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Reportes">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Compra y Venta" />
+                  <MenuItem mnemonicParsing="false" text="Inventario" />
+                  <MenuItem mnemonicParsing="false" text="Salario" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Acerca de">
+            <items>
+              <MenuItem fx:id="btnMenuAyuda" mnemonicParsing="false" onAction="#cliclAyu" text="Ayuda" />
+                  <MenuItem fx:id="btnMenuProgramador" mnemonicParsing="false" onAction="#clicPro" text="Programador" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <ImageView fitHeight="138.0" fitWidth="138.0" layoutX="174.0" layoutY="77.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/Designer.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

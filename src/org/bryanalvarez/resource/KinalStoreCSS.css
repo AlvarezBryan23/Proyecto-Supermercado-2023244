@@ -1,0 +1,37 @@
+.menu-bar{
+    -fx-background-color: #5D9E3B;
+    -fx-opacity: 0.5;
+    -fx-border-width: 2.0;
+}
+
+.button1{
+    -fx-background-color: transparent;
+    
+}
+
+.button2{
+    -fx-background-color: #E6801C;
+    -fx-border-color: black;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+}
+
+.button3 :hover{
+    -fx-background-color: #5D9E3B;
+    -fx-font-size: 22px;
+    -fx-effect: dropshadow(three-pass-box, black, 20,0,0,0);
+}
+
+.button4 :hover{
+        -fx-font-size: 22px 
+}
+
+.table-view .column-header,
+.table-view .column-header-background.filler{
+        -fx-cell-size-: 20;
+        -fx-background-color: #267365;
+}
+
+.table-row-cell:selected{
+    -fx-background-color: #F29FO5;
+}
