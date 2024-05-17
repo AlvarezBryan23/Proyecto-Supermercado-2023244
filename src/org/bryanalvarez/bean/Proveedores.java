@@ -93,4 +93,9 @@ public class Proveedores {
     public void setPaginaWeb(String paginaWeb) {
         this.paginaWeb = paginaWeb;
     }
+
+    @Override
+    public String toString() {
+        return getCodigoProveedor() + " │ "  ;
+    }
 }

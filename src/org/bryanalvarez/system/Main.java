@@ -136,7 +136,7 @@ public class Main extends Application {
    }      
          public void MenuProductosView(){
          try{
-             MenuProductosController menuPro = (MenuProductosController)cambiarEscena("MenuProductos.fxml", 1000, 900);
+             MenuProductosController menuPro = (MenuProductosController)cambiarEscena("MenuProductos.fxml", 999, 563);
               menuPro.setEscenarioPrincipal(this);
         }catch(Exception e){
             e.printStackTrace();

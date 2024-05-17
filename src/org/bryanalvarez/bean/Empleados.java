@@ -11,19 +11,21 @@ public class Empleados {
     private double sueldo;
     private String direccion;
     private String turno;
+    private int codigoCargoEmpleado;
     
     public Empleados(){
     
     }
     
     public Empleados(int codigoEmpleado, String nombreEmpleado, String apellidoEmpleado, double sueldo,
-            String direccion, String turno ){
+            String direccion, String turno, int codigoCargoEmpleado){
         this.codigoEmpleado = codigoEmpleado;
         this.nombreEmpleado = nombreEmpleado;
         this.apellidoEmpleado = apellidoEmpleado;
         this.sueldo = sueldo;
         this.direccion = direccion;
         this.turno = turno;
+        this.codigoCargoEmpleado = codigoCargoEmpleado;
     }
 
     public int getCodigoEmpleado() {
@@ -73,4 +75,12 @@ public class Empleados {
     public void setTurno(String turno) {
         this.turno = turno;
     }
+
+    public int getCodigoCargoEmpleado() {
+        return codigoCargoEmpleado;
+    }
+
+    public void setCodigoCargoEmpleado(int codigoCargoEmpleado) {
+        this.codigoCargoEmpleado = codigoCargoEmpleado;
+    }   
 }

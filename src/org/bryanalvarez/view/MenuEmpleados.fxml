@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -12,14 +13,14 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="551.0" prefWidth="981.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.bryanalvarez.controller.MenuEmpleadosController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="555.0" prefWidth="992.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.bryanalvarez.controller.MenuEmpleadosController">
    <children>
-      <ImageView fitHeight="915.0" fitWidth="980.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="915.0" fitWidth="990.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Images/MenuEmpleados.png" />
          </image>
       </ImageView>
-      <GridPane layoutX="30.0" layoutY="83.0" prefHeight="270.0" prefWidth="161.0">
+      <GridPane layoutY="83.0" prefHeight="270.0" prefWidth="161.0">
         <columnConstraints>
           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
@@ -30,7 +31,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button fx:id="btnEliminar" mnemonicParsing="false" onAction="#eliminar" prefHeight="57.0" prefWidth="158.0" text="Eliminar" GridPane.rowIndex="1">
+            <Button fx:id="btnEliminar" mnemonicParsing="false" prefHeight="57.0" prefWidth="158.0" text="Eliminar" GridPane.rowIndex="1">
                <graphic>
                   <ImageView fx:id="imgEliminarEmpleado" fitHeight="61.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -38,7 +39,7 @@
                      </image>
                   </ImageView>
                </graphic></Button>
-            <Button fx:id="btnAgregar" mnemonicParsing="false" onAction="#agregar" prefHeight="56.0" prefWidth="161.0" text="Agregar" GridPane.halignment="CENTER">
+            <Button fx:id="btnAgregar" mnemonicParsing="false" prefHeight="56.0" prefWidth="161.0" text="Agregar" GridPane.halignment="CENTER">
                <graphic>
                   <ImageView fx:id="imgAgregarEmpleado" fitHeight="53.0" fitWidth="49.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -46,7 +47,7 @@
                      </image>
                   </ImageView>
                </graphic></Button>
-            <Button fx:id="btnEditar" mnemonicParsing="false" onAction="#editar" prefHeight="55.0" prefWidth="163.0" text="Editar" GridPane.rowIndex="2">
+            <Button fx:id="btnEditar" mnemonicParsing="false" prefHeight="55.0" prefWidth="163.0" text="Editar" GridPane.rowIndex="2">
                <graphic>
                   <ImageView fx:id="imgEditarEmpleado" fitHeight="50.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -54,7 +55,7 @@
                      </image>
                   </ImageView>
                </graphic></Button>
-            <Button fx:id="btnReporte" mnemonicParsing="false" onAction="#reporte" prefHeight="60.0" prefWidth="161.0" text="Reportes" GridPane.rowIndex="3">
+            <Button fx:id="btnReporte" mnemonicParsing="false" prefHeight="60.0" prefWidth="161.0" text="Reportes" GridPane.rowIndex="3">
                <graphic>
                   <ImageView fx:id="imgReporteEmpleado" fitHeight="59.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -64,7 +65,7 @@
                </graphic></Button>
          </children>
       </GridPane>
-      <Button fx:id="btnRegresar" contentDisplay="CENTER" layoutX="69.0" layoutY="368.0" mnemonicParsing="false" onAction="#regresar" prefHeight="47.0" prefWidth="83.0">
+      <Button fx:id="btnRegresar" contentDisplay="CENTER" layoutX="39.0" layoutY="362.0" mnemonicParsing="false" onAction="#regresar" prefHeight="47.0" prefWidth="83.0">
          <graphic>
             <ImageView fitHeight="39.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -73,14 +74,15 @@
             </ImageView>
          </graphic>
       </Button>
-      <TableView fx:id="tblEmpleados" layoutX="217.0" layoutY="305.0" onMouseClicked="#seleccionarDatos" prefHeight="246.0" prefWidth="747.0">
+      <TableView fx:id="tblEmpleados" layoutX="168.0" layoutY="306.0" onMouseClicked="#seleccionarDatos" prefHeight="246.0" prefWidth="818.0">
          <columns>
             <TableColumn fx:id="colCodigoE" minWidth="89.0" prefWidth="133.0" text="codigoEmpleado" />
             <TableColumn fx:id="colnombreE" minWidth="74.0" prefWidth="128.0" text="nombreEmpleado" />
             <TableColumn fx:id="colapellidoE" minWidth="65.0" prefWidth="124.0" text="apellidoEmpleado" />
             <TableColumn fx:id="colsueldoE" minWidth="53.0" prefWidth="114.0" text="sueldo" />
-            <TableColumn fx:id="coldireccionE" minWidth="33.0" prefWidth="119.0" text="direccion" />
-            <TableColumn fx:id="colturnoE" minWidth="40.0" prefWidth="128.0" text="turno" />
+            <TableColumn fx:id="coldireccionE" minWidth="33.0" prefWidth="98.0" text="direccion" />
+            <TableColumn fx:id="colturnoE" minWidth="7.0" prefWidth="84.0" text="turno" />
+            <TableColumn fx:id="colCodigoCE" minWidth="7.0" prefWidth="136.0" text="codigoCargoEmpleado" />
          </columns>
       </TableView>
       <GridPane layoutX="362.0" layoutY="83.0" prefHeight="69.0" prefWidth="228.0">
@@ -99,13 +101,13 @@
             <TextField fx:id="txtdireccionEm" prefHeight="30.0" prefWidth="161.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
-      <GridPane layoutX="217.0" layoutY="170.0" prefHeight="136.0" prefWidth="690.0">
+      <GridPane layoutX="168.0" layoutY="170.0" prefHeight="136.0" prefWidth="802.0">
          <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="115.0" minWidth="10.0" prefWidth="101.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="139.0" minWidth="10.0" prefWidth="128.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="102.0" minWidth="7.0" prefWidth="61.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="141.0" minWidth="10.0" prefWidth="141.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="173.0" minWidth="10.0" prefWidth="147.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="102.0" minWidth="7.0" prefWidth="57.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="179.0" minWidth="10.0" prefWidth="104.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="179.0" minWidth="10.0" prefWidth="101.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="179.0" minWidth="10.0" prefWidth="101.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="194.0" minWidth="10.0" prefWidth="177.0" />
          </columnConstraints>
          <rowConstraints>
@@ -122,6 +124,8 @@
             <TextField fx:id="txtnombreEm" layoutX="95.0" layoutY="10.0" prefHeight="29.0" prefWidth="94.0" GridPane.columnIndex="5" />
             <Label contentDisplay="CENTER" layoutX="10.0" layoutY="16.0" prefHeight="17.0" prefWidth="74.0" text="   Apellido" GridPane.columnIndex="4" GridPane.rowIndex="1" />
             <TextField fx:id="txtapellidoEm" cache="true" layoutX="95.0" layoutY="10.0" prefHeight="29.0" prefWidth="47.0" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+            <Label prefHeight="17.0" prefWidth="127.0" text="codigoCargoEmpleado" GridPane.rowIndex="1" />
+            <ComboBox fx:id="cmbCodigoCE" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
    </children>

@@ -43,20 +43,20 @@
             <RowConstraints maxHeight="79.0" minHeight="10.0" prefHeight="71.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Button fx:id="btnReporte" mnemonicParsing="false" onAction="#reporte" prefHeight="46.0" prefWidth="177.0" text="     Reportes" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-            <Button fx:id="btnEditar" mnemonicParsing="false" onAction="#editar" prefHeight="46.0" prefWidth="177.0" text="       Editar" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-            <Button fx:id="btnEliminar" mnemonicParsing="false" onAction="#eliminar" prefHeight="46.0" prefWidth="182.0" text="     Eliminar" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+            <Button fx:id="btnReporte" mnemonicParsing="false" prefHeight="46.0" prefWidth="177.0" text="     Reportes" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+            <Button fx:id="btnEditar" mnemonicParsing="false" prefHeight="46.0" prefWidth="177.0" text="       Editar" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+            <Button fx:id="btnEliminar" mnemonicParsing="false" prefHeight="46.0" prefWidth="182.0" text="     Eliminar" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
             <Button fx:id="btnAgregar" mnemonicParsing="false" onAction="#agregar" prefHeight="39.0" prefWidth="176.0" text="       Agregar" GridPane.halignment="CENTER" />
          </children>
       </GridPane>
-      <GridPane layoutX="154.0" layoutY="194.0" prefHeight="130.0" prefWidth="819.0">
+      <GridPane layoutX="154.0" layoutY="194.0" prefHeight="130.0" prefWidth="842.0">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="110.0" minWidth="10.0" prefWidth="110.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="137.0" minWidth="10.0" prefWidth="127.0" />
             <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="102.0" minWidth="7.0" prefWidth="95.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="179.0" minWidth="10.0" prefWidth="121.0" />
-            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="179.0" minWidth="10.0" prefWidth="75.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="194.0" minWidth="10.0" prefWidth="179.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="179.0" minWidth="10.0" prefWidth="103.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="217.0" minWidth="10.0" prefWidth="217.0" />
          </columnConstraints>
          <rowConstraints>
             <RowConstraints maxHeight="42.0" minHeight="10.0" prefHeight="33.0" vgrow="SOMETIMES" />
@@ -74,8 +74,8 @@
             <TextField fx:id="txtDescripcionP" layoutX="97.0" layoutY="10.0" prefHeight="27.0" prefWidth="87.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Label text="existencia" GridPane.columnIndex="2" GridPane.rowIndex="1" />
             <TextField fx:id="txtExistencia" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-            <ComboBox fx:id="cmbCodProv" prefHeight="25.0" prefWidth="205.0" GridPane.columnIndex="5" GridPane.rowIndex="1" />
-            <ComboBox fx:id="cmbCodigoTipoP" layoutX="635.0" layoutY="51.0" prefHeight="25.0" prefWidth="205.0" GridPane.columnIndex="5" />
+            <ComboBox fx:id="cmbCodProv" prefHeight="25.0" prefWidth="234.0" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+            <ComboBox fx:id="cmbCodigoTipoP" layoutX="635.0" layoutY="51.0" prefHeight="25.0" prefWidth="224.0" GridPane.columnIndex="5" />
          </children>
       </GridPane>
       <GridPane layoutX="430.0" layoutY="124.0" prefHeight="69.0" prefWidth="282.0">
@@ -104,9 +104,9 @@
             <TextField fx:id="txtPrecioDP" prefHeight="26.0" prefWidth="182.0" GridPane.columnIndex="1" />
          </children>
       </GridPane>
-      <Button fx:id="btnRegresar" layoutX="193.0" layoutY="14.0" mnemonicParsing="false" prefHeight="69.0" prefWidth="63.0">
+      <Button fx:id="btnRegresar" layoutX="193.0" layoutY="14.0" mnemonicParsing="false" onAction="#regresar" prefHeight="69.0" prefWidth="63.0">
          <graphic>
-            <ImageView fitHeight="61.0" fitWidth="56.0" onDragDetected="#regresar" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="61.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Images/Regresar.png" />
                </image>

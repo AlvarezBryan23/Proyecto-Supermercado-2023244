@@ -52,15 +52,12 @@ create table TelefonoProveedor(
     numeroPrincipal varchar(8) not null,
     numeroSecundario varchar(8) not null,
     observaciones varchar(45),
-    primary key PK_codigoTelefonoProveedor (codigoTelefonoProveedor)
+    codigoProveedor int not null,
+    primary key PK_codigoTelefono_Proveedor (codigoTelefonoProveedor),
+    constraint FK_TelefonoProveedor_Proveedores foreign key TelefonoProveedor(codigoProveedor)
+				references Proveedores(codigoProveedor)
 );
 
-create table DetalleCompra(
-	codigoDetalleCompra int not null,
-    costoUnitario decimal(10,2),
-    cantidad int not null,
-    primary key PK_codigoDetalleCompra (codigoDetalleCompra)
-);
 
 create table Empleados(
 	codigoEmpleado int not null,
@@ -69,7 +66,10 @@ create table Empleados(
     sueldo decimal(10,2),
     direccion varchar(150)not null,
     turno varchar(15)not null,
-    primary key PK_codigoEmpleado (codigoEmpleado)
+    codigoCargoEmpleado int not null,
+    primary key PK_codigoEmpleado (codigoEmpleado),
+    constraint FK_Empleados_CargoEmpleado foreign key Empleados(codigoCargoEmpleado)
+				references CargoEmpleado(codigoCargoEmpleado)
 );
 
 create table Factura(
@@ -77,17 +77,18 @@ create table Factura(
     estado varchar(50),
     totalFactura decimal(10,2),
     fechaFactura varchar(45),
-    primary key PK_numeroFactura (numeroFactura)
+    codigoCliente int not null,
+    codigoEmpleado int not null,
+    primary key PK_numeroFactura (numeroFactura),
+    constraint FK_Factura_Clientes foreign key Factura(codigoCliente)
+				references Clientes(codigoCliente),
+	constraint FK_Factura_Empleados foreign key Factura(codigoEmpleado)
+				references Empleados(codigoEmpleado)
 );
 
-create table DetalleFactura(
-	codigoDetalleFactura int not null,
-    precioUnitario decimal(10,2)not null,
-    cantidad int not null,
-    primary key PK_codigoDetalleFactura (codigoDetalleFactura)
-);
 
-create table Productos (
+
+create table Productos(
 	codigoProducto varchar(15) not null,
     descripcionProducto varchar(100)not null,
     precioUnitario decimal(10,2),
@@ -102,6 +103,33 @@ create table Productos (
 	constraint FK_Productos_Proveedores foreign key Productos(codigoProveedor)
 				references Proveedores(codigoProveedor)
 );
+
+create table DetalleCompra(
+	codigoDetalleCompra int not null,
+    costoUnitario decimal(10,2),
+    cantidad int not null,
+    codigoProducto varchar(15),
+    numeroDocumento int not null,
+    primary key PK_codigoDetalleCompra (codigoDetalleCompra),
+    constraint FK_DetalleCompra_Productos foreign key (codigoProducto)
+				references Productos(codigoProducto),
+	constraint FK_DetalleCompra_Compras foreign key (numeroDocumento)
+				references Compras(numeroDocumento)
+);
+
+create table DetalleFactura(
+	codigoDetalleFactura int not null,
+    precioUnitario decimal(10,2)not null,
+    cantidad int not null,
+    numeroFactura int not null,
+    codigoProducto varchar(15) not null,
+    primary key PK_codigoDetalleFactura (codigoDetalleFactura),
+    constraint FK_DetalleFactura_Factura foreign key (numeroFactura)
+				references Factura(numeroFactura),
+	constraint FK_DetalleFactura_Productos foreign key (codigoProducto)
+				references Productos(codigoProducto)
+);
+
 -- -------------------- Procesos de Almacenados ----------------------------------------
 -- -------------------- Clientes ------------------------------------------------
 -- --------------------- Agregar Clientes ----------------------------------------
@@ -287,22 +315,97 @@ Delimiter ;
 call sp_EditarProveedores(4, '202567789', 'Sara', 'Castillo', 'Mixco', 'Whisky', '22174512', 'Whisky.com');
 
 -- -------------------- Procesos de Almacenados ----------------------------------------
--- --------------------------Empleados------------------------------------------------
--- -----------------------Agregar Empleados ----------------------------------------
+-- --------------------------CargoEmpleado------------------------------------------------
+-- -----------------------Agregar Cargo ----------------------------------------
 Delimiter $$
-	create procedure sp_AgregarEmpleados(in codigoEmpleado  int, in nombreEmpleado varchar(50), in apellidoEmpleado varchar(50), 
-    in sueldo decimal(10,2), in direccion varchar(150), in turno varchar(15))
+	create procedure sp_AgregarCargo(in codigoCargoEmpleado int, in nombreCargo varchar(50), 
+    in descripcionCargo varchar(90))
 		Begin
-			Insert into Empleados(codigoEmpleado, nombreEmpleado, apellidoEmpleado, sueldo, direccion, turno) values
-            (codigoEmpleado, nombreEmpleado, apellidoEmpleado, sueldo, direccion, turno);
+			Insert into CargoEmpleado(codigoCargoEmpleado, nombreCargo, descripcionCargo) values
+            (codigoCargoEmpleado, nombreCargo, descripcionCargo);
             
 		End $$
 Delimiter ;
 
-call sp_AgregarEmpleados(1, 'Derian', 'Hernandez', '10000', 'Mixco', 'Dia');
-call sp_AgregarEmpleados(2, 'Fredy', 'Gomez', '5000', 'Juana de Arco', 'Noche');
-call sp_AgregarEmpleados(3, 'Josue', 'Perez', '4500', 'Zona 18', 'Noche');
-call sp_AgregarEmpleados(4, 'Jorge', 'Luna', '6700', 'Lomas', 'Dia');
+call sp_AgregarCargo(10, 'Coordinador', 'Controlar todo lo que pasa en la empresa');
+call sp_AgregarCargo(11, 'Administrador', 'Asginar responsabilidades de la empresa');
+call sp_AgregarCargo(12, 'Jefe', 'Supervisar y dirigir');
+call sp_AgregarCargo(13, 'Gerente', 'Contratar, capacitar y evaluar');
+
+-- -------------------------------Listar CargoEmpleado---------------------------------------------------
+Delimiter $$
+	create procedure sp_ListarCargo()
+		Begin
+			select
+            CE.codigoCargoEmpleado,
+            CE.nombreCargo,
+            CE.descripcionCargo		
+            from CargoEmpleado CE;
+		End $$
+Delimiter ;
+
+call sp_ListarCargo();
+
+-- -----------------------------------Buscar CargoEmpleado----------------------------------------------------
+Delimiter $$
+	Create procedure sp_BuscarCargo(in codigoCE int)
+		Begin
+			select
+            CE.codigoCargoEmpleado,
+			CE.nombreCargo,
+            CE.descripcionCargo
+            from CargoEmpleado CE
+            where codigoCargoEmpleado = codigoCE;
+		End $$
+Delimiter ;
+
+call sp_BuscarCargo(12);
+
+-- --------------------------- Eliminar CargoEmpleado--------------------------------------------------
+Delimiter $$
+	create procedure sp_EliminarCargo(in codigoCE int)
+		Begin
+			Delete from CargoEmpleado
+				where codigoCargoEmpleado = codigoCE;
+		End $$
+Delimiter ;
+
+/*call sp_EliminarCargo(11);
+call sp_ListarCargo();*/
+
+-- ----------------------------- Editar CargoEmpleado ----------------------------------------------------
+Delimiter $$
+	create procedure sp_EditarCargo(in codigoCE int, in nombreC varchar(50),
+    in descripcionC varchar(90))
+		Begin
+			Update CargoEmpleado CE
+            set	
+            CE.nombreCargo = nombreC,
+            CE.descripcionCargo = descripcionC
+            where codigoCargoEmpleado = codigoCE;
+		End $$
+Delimiter ;
+
+call sp_EditarCargo(12, 'Jefe de Proyectos', 'Controlar todos los proyectos');	
+
+
+-- -------------------- Procesos de Almacenados ----------------------------------------
+-- --------------------------Empleados------------------------------------------------
+-- -----------------------Agregar Empleados ----------------------------------------
+Delimiter $$
+	create procedure sp_AgregarEmpleados(in codigoEmpleado int, in nombreEmpleado varchar(50), in apellidoEmpleado varchar(50), 
+    in sueldo decimal(10,2), in direccion varchar(150), in turno varchar(15), in codigoCargoEmpleado int)
+		Begin
+			Insert into Empleados(codigoEmpleado, nombreEmpleado, apellidoEmpleado, sueldo, direccion, turno, codigoCargoEmpleado) 
+            values (codigoEmpleado, nombreEmpleado, apellidoEmpleado, sueldo, direccion, turno, codigoCargoEmpleado);
+            
+		End $$
+Delimiter ;
+
+call sp_AgregarEmpleados(1, 'Derian', 'Hernandez', '10000', 'Mixco', 'Dia', 10);
+call sp_AgregarEmpleados(2, 'Fredy', 'Gomez', '5000', 'Juana de Arco', 'Noche', 11);
+call sp_AgregarEmpleados(3, 'Josue', 'Perez', '4500', 'Zona 18', 'Noche', 12);
+call sp_AgregarEmpleados(4, 'Jorge', 'Luna', '6700', 'Lomas', 'Dia', 13);
 
 -- -------------------------------Listar Proveedores---------------------------------------------------
 Delimiter $$
@@ -314,7 +417,8 @@ Delimiter $$
             E.apellidoEmpleado,
             E.sueldo,
             E.direccion,
-            E.turno
+            E.turno,
+            E.codigoCargoEmpleado
             from Empleados E;
 		End $$
 Delimiter ;
@@ -446,82 +550,6 @@ Delimiter $$
 Delimiter ;
 
 call sp_EditarCompras(3, '2025-01-5', 'Leche, Cereal, Crema', '1500');	
-	
-    
--- -------------------- Procesos de Almacenados ----------------------------------------
--- --------------------------CargoEmpleado------------------------------------------------
--- -----------------------Agregar Cargo ----------------------------------------
-Delimiter $$
-	create procedure sp_AgregarCargo(in codigoCargoEmpleado int, in nombreCargo varchar(50), 
-    in descripcionCargo varchar(90))
-		Begin
-			Insert into CargoEmpleado(codigoCargoEmpleado, nombreCargo, descripcionCargo) values
-            (codigoCargoEmpleado, nombreCargo, descripcionCargo);
-            
-		End $$
-Delimiter ;
-
-call sp_AgregarCargo(10, 'Coordinador', 'Controlar todo lo que pasa en la empresa');
-call sp_AgregarCargo(11, 'Administrador', 'Asginar responsabilidades de la empresa');
-call sp_AgregarCargo(12, 'Jefe', 'Supervisar y dirigir');
-call sp_AgregarCargo(13, 'Gerente', 'Contratar, capacitar y evaluar');
-
--- -------------------------------Listar CargoEmpleado---------------------------------------------------
-Delimiter $$
-	create procedure sp_ListarCargo()
-		Begin
-			select
-            CE.codigoCargoEmpleado,
-            CE.nombreCargo,
-            CE.descripcionCargo		
-            from CargoEmpleado CE;
-		End $$
-Delimiter ;
-
-call sp_ListarCargo();
-
--- -----------------------------------Buscar CargoEmpleado----------------------------------------------------
-Delimiter $$
-	Create procedure sp_BuscarCargo(in codigoCE int)
-		Begin
-			select
-            CE.codigoCargoEmpleado,
-			CE.nombreCargo,
-            CE.descripcionCargo
-            from CargoEmpleado CE
-            where codigoCargoEmpleado = codigoCE;
-		End $$
-Delimiter ;
-
-call sp_BuscarCargo(12);
-
--- --------------------------- Eliminar CargoEmpleado--------------------------------------------------
-Delimiter $$
-	create procedure sp_EliminarCargo(in codigoCE int)
-		Begin
-			Delete from CargoEmpleado
-				where codigoCargoEmpleado = codigoCE;
-		End $$
-Delimiter ;
-
-/*call sp_EliminarCargo(11);
-call sp_ListarCargo();*/
-
--- ----------------------------- Editar CargoEmpleado ----------------------------------------------------
-Delimiter $$
-	create procedure sp_EditarCargo(in codigoCE int, in nombreC varchar(50),
-    in descripcionC varchar(90))
-		Begin
-			Update CargoEmpleado CE
-            set	
-            CE.nombreCargo = nombreC,
-            CE.descripcionCargo = descripcionC
-            where codigoCargoEmpleado = codigoCE;
-		End $$
-Delimiter ;
-
-call sp_EditarCargo(12, 'Jefe de Proyectos', 'Controlar todos los proyectos');	
-
 
 -- -------------------- Procesos de Almacenados ----------------------------------------
 -- --------------------------TipoProducto------------------------------------------------

@@ -89,17 +89,17 @@ public class MenuProductosController implements Initializable{
         txtPrecioDP.setText(String.valueOf(((Productos)tblProductos.getSelectionModel().getSelectedItem()).getPrecioDocena()));
         txtPrecioMP.setText(String.valueOf(((Productos)tblProductos.getSelectionModel().getSelectedItem()).getPrecioMayor()));
         txtExistencia.setText(String.valueOf(((Productos)tblProductos.getSelectionModel().getSelectedItem()).getExistencia()));
-      /*   cmbCodigoTipoP.getSelectionModel().select(buscarTipoP(((Productos)tblProductos.getSelectionModel().getSelectedItem()).getCodigoTipoProducto()));*/
+         cmbCodigoTipoP.getSelectionModel().select(buscarTipoP(((Productos)tblProductos.getSelectionModel().getSelectedItem()).getCodigoTipoProducto()));
     }
     
-        /*public TipoDeProductos buscarTipoP(int codigoTipoProducto){
-        TipoDeProductos resultado = null;
+        public TipoProducto buscarTipoP(int codigoTipoProducto){
+        TipoProducto resultado = null;
         try{
             PreparedStatement procedimiento = Conection.getInstance().getConexion().prepareCall("{call sp_BuscarTipoProducto(?)}");
             procedimiento.setInt(1, codigoTipoProducto);
             ResultSet registro = procedimiento.executeQuery();
             while(registro.next()){
-                resultado = new TipoDeProducto(registro.getInt("codigoTipoProducto"),
+                resultado = new TipoProducto(registro.getInt("codigoTipoProducto"),
                                                                     registro.getString("descripcion")
                 );
             }
@@ -111,7 +111,7 @@ public class MenuProductosController implements Initializable{
         
         return resultado;
     }
-    */
+    
     public ObservableList<Productos> getProductos(){
         ArrayList<Productos> lista = new ArrayList<Productos>();
         try{
@@ -206,8 +206,8 @@ public class MenuProductosController implements Initializable{
             registro.setPrecioDocena(Double.parseDouble(txtPrecioDP.getText()));
             registro.setPrecioMayor(Double.parseDouble(txtPrecioMP.getText()));
             registro.setExistencia(Integer.parseInt(txtExistencia.getText()));
-            registro.setCodigoProveedor(((Proveedores)cmbCodigoTipoP.getSelectionModel().getSelectedItem()).getCodigoProveedor());
-            registro.setCodigoTipoProducto(((TipoProducto)cmbCodProv.getSelectionModel().getSelectedItem()).getCodigoTipoProducto());
+            registro.setCodigoProveedor(((Proveedores)cmbCodProv.getSelectionModel().getSelectedItem()).getCodigoProveedor());
+            registro.setCodigoTipoProducto(((TipoProducto)cmbCodigoTipoP.getSelectionModel().getSelectedItem()).getCodigoTipoProducto());
             try{
                 PreparedStatement procedimiento = Conection.getInstance().getConexion().prepareCall("{call sp_AgregarProductos(?, ?, ?, ?, ?, ?, ?, ?)}");
                 procedimiento.setString(1, registro.getCodigoProducto());
