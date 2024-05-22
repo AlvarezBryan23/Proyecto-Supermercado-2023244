@@ -222,12 +222,12 @@ private ObservableList<Clientes> listarClientes;
                     btnReporte.setText("Reporte");
                     btnAgregar.setDisable(false);
                     btnEliminar.setDisable(false);
-                   imgReportes.setImage(new Image("/org/bryanalvarez/Images/ReportesClientes.png"));
+                    imgReportes.setImage(new Image("/org/bryanalvarez/Images/ReportesClientes.png"));
                     imgEditar.setImage(new Image("/org/bryanalvarez/Images/EditarClientes.png"));
                     limpiarControles();
-                     tipoDeOperaciones = operaciones.NINGUNO;
-                     cargarDatos();
-                  break;
+                    tipoDeOperaciones = operaciones.NINGUNO;
+                    cargarDatos();
+                    break;
         }
     }
     

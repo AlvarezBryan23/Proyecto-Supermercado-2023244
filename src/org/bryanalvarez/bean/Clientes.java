@@ -83,4 +83,9 @@ public class Clientes {
     public void setCorreoCliente(String correcoCliente) {
         this.correoCliente = correcoCliente;
     }
+
+    @Override
+    public String toString() {
+        return "│" + getCodigoCliente();
+    }
 }

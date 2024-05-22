@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="562.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.bryanalvarez.controller.MenuFacturaController">
+   <children>
+      <ImageView fitHeight="900.0" fitWidth="1000.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/MenuFactura.png" />
+         </image>
+      </ImageView>
+      <GridPane layoutX="14.0" layoutY="14.0" prefHeight="249.0" prefWidth="131.0">
+         <columnConstraints>
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="70.0" minHeight="10.0" prefHeight="70.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="76.0" minHeight="10.0" prefHeight="66.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="72.0" minHeight="10.0" prefHeight="72.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="79.0" minHeight="10.0" prefHeight="71.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Button fx:id="btnReporte" mnemonicParsing="false" onAction="#reporte" prefHeight="46.0" prefWidth="177.0" text="     Reportes" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+            <Button fx:id="btnEditar" mnemonicParsing="false" onAction="#editar" prefHeight="46.0" prefWidth="177.0" text="       Editar" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+            <Button fx:id="btnEliminar" mnemonicParsing="false" onAction="#eliminar" prefHeight="46.0" prefWidth="182.0" text="     Eliminar" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+            <Button fx:id="btnAgregar" mnemonicParsing="false" onAction="#agregar" prefHeight="39.0" prefWidth="176.0" text="       Agregar" GridPane.halignment="CENTER" />
+         </children>
+      </GridPane>
+      <Button fx:id="btnRegresar" layoutX="161.0" layoutY="14.0" mnemonicParsing="false" onAction="#regresar" prefHeight="69.0" prefWidth="63.0">
+         <graphic>
+            <ImageView fitHeight="61.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/Regresar.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <TableView fx:id="tblFactura" layoutX="91.0" layoutY="316.0" onMouseClicked="#seleccionarDatos" prefHeight="232.0" prefWidth="819.0">
+         <columns>
+            <TableColumn fx:id="colNumeroFactura" minWidth="74.0" prefWidth="127.0" text="numeroFactura" />
+            <TableColumn fx:id="colEstado" minWidth="72.0" prefWidth="133.0" text="estado" />
+            <TableColumn fx:id="colTotalFactura" minWidth="33.0" prefWidth="171.0" text="totalFactura" />
+            <TableColumn fx:id="colFechaFactura" minWidth="28.0" prefWidth="150.0" text="fechaFactura" />
+            <TableColumn fx:id="colCodigoCliente" minWidth="47.0" prefWidth="120.0" text="codigoCliente" />
+            <TableColumn fx:id="colCodigoEmpleado" minWidth="47.0" prefWidth="117.0" text="codigoEmpleado" />
+         </columns>
+      </TableView>
+      <GridPane layoutX="221.0" layoutY="90.0" prefHeight="98.0" prefWidth="534.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="110.0" minWidth="10.0" prefWidth="110.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="137.0" minWidth="10.0" prefWidth="127.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="102.0" minWidth="7.0" prefWidth="95.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="179.0" minWidth="10.0" prefWidth="121.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="48.0" minHeight="10.0" prefHeight="42.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="64.0" minHeight="10.0" prefHeight="56.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Label prefHeight="17.0" prefWidth="99.0" text="numeroFactura" />
+            <TextField fx:id="txtnumeroFac" prefHeight="29.0" prefWidth="47.0" GridPane.columnIndex="1" />
+            <Label prefHeight="17.0" prefWidth="72.0" text="totalFactura" GridPane.columnIndex="2" />
+            <TextField fx:id="txtTotalFactura" layoutX="116.0" layoutY="10.0" prefHeight="29.0" prefWidth="47.0" GridPane.columnIndex="3" />
+            <Label layoutX="10.0" layoutY="16.0" prefHeight="17.0" prefWidth="117.0" text="estado" GridPane.rowIndex="1" />
+            <TextField fx:id="txtEstado" layoutX="97.0" layoutY="10.0" prefHeight="27.0" prefWidth="87.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label prefHeight="17.0" prefWidth="73.0" text="fechaFactura" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <TextField fx:id="txtFechaFactura" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+         </children>
+      </GridPane>
+      <GridPane layoutX="305.0" layoutY="196.0" prefHeight="98.0" prefWidth="392.0">
+         <columnConstraints>
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="179.0" minWidth="10.0" prefWidth="103.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="217.0" minWidth="10.0" prefWidth="217.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="42.0" minHeight="10.0" prefHeight="33.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Label layoutX="10.0" layoutY="16.0" text="codigoCliente" />
+            <Label layoutX="10.0" layoutY="16.0" prefHeight="17.0" prefWidth="106.0" text="codigoEmpleado" GridPane.rowIndex="1" />
+            <ComboBox fx:id="cmbCodigoEmpleado" prefHeight="25.0" prefWidth="234.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <ComboBox fx:id="cmbCodigoCliente" layoutX="635.0" layoutY="51.0" prefHeight="25.0" prefWidth="224.0" GridPane.columnIndex="1" />
+         </children>
+      </GridPane>
+   </children>
+</AnchorPane>

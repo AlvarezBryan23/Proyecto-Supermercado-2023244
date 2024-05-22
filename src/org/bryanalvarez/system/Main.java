@@ -12,11 +12,16 @@ import org.bryanalvarez.controller.MenuAyudaController;
 import org.bryanalvarez.controller.MenuCargoEmpleadoController;
 import org.bryanalvarez.controller.MenuClientesController;
 import org.bryanalvarez.controller.MenuComprasController;
+import org.bryanalvarez.controller.MenuDetalleCompraController;
+import org.bryanalvarez.controller.MenuDetalleFacturaController;
+import org.bryanalvarez.controller.MenuEmailProveedorController;
 import org.bryanalvarez.controller.MenuEmpleadosController;
+import org.bryanalvarez.controller.MenuFacturaController;
 import org.bryanalvarez.controller.MenuPrincipalController;
 import org.bryanalvarez.controller.MenuProductosController;
 import org.bryanalvarez.controller.MenuProgramadorController;
 import org.bryanalvarez.controller.MenuProveedoresController;
+import org.bryanalvarez.controller.MenuTelefonoProveedorController;
 import org.bryanalvarez.controller.MenuTipoProductoController;
 
 /**
@@ -142,4 +147,45 @@ public class Main extends Application {
             e.printStackTrace();
         }
       }
+         public void MenuDetalleCompra(){
+         try{
+             MenuDetalleCompraController menuDetalleC = (MenuDetalleCompraController)cambiarEscena("MenuDetalleCompra.fxml", 1003, 564);
+              menuDetalleC.setEscenarioPrincipal(this);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+      }
+         
+       public void MenuFactura(){
+         try{
+              MenuFacturaController menuF = ( MenuFacturaController)cambiarEscena("MenuFactura.fxml", 1000, 562);
+              menuF.setEscenarioPrincipal(this);
+        }catch(Exception e){
+            e.printStackTrace();  
+         }
+     }
+         public void MenuDetalleFactura(){
+         try{
+                 MenuDetalleFacturaController menuDF = ( MenuDetalleFacturaController)cambiarEscena("MenuDetalleFactura.fxml", 1023, 577);
+                 menuDF.setEscenarioPrincipal(this);
+        }catch(Exception e){
+            e.printStackTrace();  
+         }
+     }  
+         public void MenuTelefonoProveedor(){
+         try{
+                 MenuTelefonoProveedorController menuTP = ( MenuTelefonoProveedorController)cambiarEscena("MenuTelefonoProveedor.fxml", 952, 534);
+                 menuTP.setEscenarioPrincipal(this);
+        }catch(Exception e){
+            e.printStackTrace();  
+         }
+     }     
+         public void MenuEmailProveedor(){
+         try{
+                 MenuEmailProveedorController menuEP = ( MenuEmailProveedorController)cambiarEscena("MenuEmailProveedor.fxml", 952, 534);
+                 menuEP.setEscenarioPrincipal(this);
+        }catch(Exception e){
+            e.printStackTrace();  
+         }
+     }    
 }

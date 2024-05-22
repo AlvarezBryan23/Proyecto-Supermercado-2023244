@@ -15,6 +15,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javax.swing.JOptionPane;
 import org.bryanalvarez.DB.Conection;
 import org.bryanalvarez.bean.Productos;
 import org.bryanalvarez.bean.Proveedores;
@@ -79,9 +80,7 @@ public class MenuProductosController implements Initializable{
        codigoPro.setCellValueFactory(new PropertyValueFactory<Productos, Integer>("codigoProveedor"));
      
     }
-    
-
-    
+      
     public void seleccionarDatos(){
         txtCodigoProduc.setText(((Productos)tblProductos.getSelectionModel().getSelectedItem()).getCodigoProducto());
         txtDescripcionP.setText(((Productos)tblProductos.getSelectionModel().getSelectedItem()).getDescripcionProducto());
@@ -100,7 +99,7 @@ public class MenuProductosController implements Initializable{
             ResultSet registro = procedimiento.executeQuery();
             while(registro.next()){
                 resultado = new TipoProducto(registro.getInt("codigoTipoProducto"),
-                                                                    registro.getString("descripcion")
+                                                                 registro.getString("descripcion")
                 );
             }
         }catch(Exception e){
@@ -226,10 +225,110 @@ public class MenuProductosController implements Initializable{
             }
         }
         
+        public void eliminar(){
+            switch(tipoDeOperaciones){
+                case ACTUALIZAR:
+                 desactivarControles(); 
+                  limpiarControles();
+                  btnAgregar.setText("Agregar");
+                  btnEliminar.setText("Eliminar");
+                  btnEditar.setDisable(false);
+                  btnReporte.setDisable(false);
+                  tipoDeOperaciones = operaciones.NINGUNO;
+                  break;
+                default:
+                    if(tblProductos.getSelectionModel().getSelectedItem() != null){
+                        int respuesta = JOptionPane.showConfirmDialog(null, "Confirmo que se elimine", "Eliminar Productos",
+                                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                        if(respuesta == JOptionPane.YES_NO_OPTION){
+                            try{
+                                PreparedStatement procedimiento = Conection.getInstance().getConexion().prepareCall("{call sp_EliminarProductos(?)}");
+                                procedimiento.setString(1, ((Productos)tblProductos.getSelectionModel().getSelectedItem()).getCodigoProducto());
+                                procedimiento.execute();
+                                listarProductos.remove(tblProductos.getSelectionModel().getSelectedItem());
+                                
+                            }catch(Exception e){
+                                e.printStackTrace();
+                            }
+                        }
+                    }else
+                        JOptionPane.showMessageDialog(null, "Debe seleccionar un dato para eliminar");
+            }
+        }
+        
     public Main getEscenarioPrincipal() {
         return escenarioPrincipal;
     }
+    
+    public void editar(){
+        switch(tipoDeOperaciones){
+            case NINGUNO:
+            if(tblProductos.getSelectionModel().getSelectedItem() != null){
+                  activarControles();
+                  btnEditar.setText("Actualizar");
+                  btnReporte.setText("Cancelar");
+                  btnAgregar.setDisable(true);
+                  btnEliminar.setDisable(true);
+                  txtCodigoProduc.setEditable(false);
+                  tipoDeOperaciones = operaciones.ACTUALIZAR;
+            }else
+                JOptionPane.showMessageDialog(null, "Debe de seleccionar un dato");
+            break;
+            
+            case ACTUALIZAR:
+             desactivarControles();  
+             Actualizar();
+             btnEditar.setText("Editar");
+             btnReporte.setText("Reporte");
+             btnAgregar.setDisable(false);
+             btnEliminar.setDisable(false);
+             limpiarControles();
+             tipoDeOperaciones = operaciones.NINGUNO;
+             cargarDatos();
+             break;
+        }
+    }
+    
+    public void Actualizar(){
+        try{
+            PreparedStatement procedimiento = Conection.getInstance().getConexion().prepareCall("{call sp_EditarProductos(?, ?, ?, ?, ?, ?, ?, ?)}");
+            Productos registro = (Productos)tblProductos.getSelectionModel().getSelectedItem();
+            registro.setDescripcionProducto(txtDescripcionP.getText());
+            registro.setPrecioUnitario(Double.parseDouble(txtPrecioUP.getText()));
+            registro.setPrecioDocena(Double.parseDouble(txtPrecioDP.getText()));
+            registro.setPrecioMayor(Double.parseDouble(txtPrecioMP.getText()));
+            registro.setExistencia(Integer.parseInt(txtExistencia.getText()));
+            registro.setCodigoTipoProducto(((TipoProducto)cmbCodigoTipoP.getSelectionModel().getSelectedItem()).getCodigoTipoProducto());
+            registro.setCodigoProveedor(((Proveedores)cmbCodProv.getSelectionModel().getSelectedItem()).getCodigoProveedor());
+            procedimiento.setString(1, registro.getCodigoProducto());
+            procedimiento.setString(2, registro.getDescripcionProducto());
+            procedimiento.setDouble(3, registro.getPrecioUnitario());
+            procedimiento.setDouble(4, registro.getPrecioDocena());
+            procedimiento.setDouble(5, registro.getPrecioMayor());
+            procedimiento.setInt(6, registro.getExistencia());
+            procedimiento.setInt(7, registro.getCodigoTipoProducto());
+            procedimiento.setInt(8, registro.getCodigoProveedor());
+            procedimiento.execute();
+            
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
 
+    public void reporte(){
+        switch(tipoDeOperaciones){
+            case ACTUALIZAR:
+                desactivarControles();
+                limpiarControles();
+                btnEditar.setText("Editar");
+                btnReporte.setText("Reporte");
+                btnAgregar.setDisable(false);
+                btnEliminar.setDisable(false);
+                tipoDeOperaciones = operaciones.NINGUNO;
+                break;
+        }
+    }
+    
     public void desactivarControles(){
         txtCodigoProduc.setEditable(false);
         txtDescripcionP.setEditable(false);
@@ -266,7 +365,7 @@ public class MenuProductosController implements Initializable{
     public void setEscenarioPrincipal(Main escenarioPrincipal) {
         this.escenarioPrincipal = escenarioPrincipal;
     }
-        @FXML
+  @FXML
   public void regresar (ActionEvent event){
         if (event.getSource() == btnRegresar){
         escenarioPrincipal.MenuPrincipalView();

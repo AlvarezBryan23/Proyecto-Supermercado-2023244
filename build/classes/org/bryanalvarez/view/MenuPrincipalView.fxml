@@ -25,6 +25,11 @@
                   <MenuItem fx:id="btnMenuProveedores" mnemonicParsing="false" onAction="#cliclProve" text="Proveedores" />
                   <MenuItem fx:id="btnMenuEmpleados" mnemonicParsing="false" onAction="#clicEmple" text="Empleados" />
                   <MenuItem fx:id="btnTipoProducto" mnemonicParsing="false" onAction="#cliclTipo" text="Tipo de Producto" />
+                  <MenuItem fx:id="btnDetalleCompra" mnemonicParsing="false" onAction="#cliclDetalleC" text="Detalles de Compra" />
+                  <MenuItem fx:id="btnDetalleFactura" mnemonicParsing="false" onAction="#cliclDF" text="Detalles de Factura" />
+                  <MenuItem fx:id="btnFactura" mnemonicParsing="false" onAction="#cliclFac" text="Facturas" />
+                  <MenuItem fx:id="btnTelefonoProveedor" mnemonicParsing="false" onAction="#cliclTP" text="Telefonos del Proveedor" />
+                  <MenuItem fx:id="btnEmailProveedor" mnemonicParsing="false" onAction="#cliclEP" text="Email del Proveedor  " />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Reportes">

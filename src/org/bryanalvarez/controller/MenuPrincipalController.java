@@ -24,6 +24,11 @@ public class MenuPrincipalController implements Initializable {
     @FXML MenuItem btnCargoEmpleado;
     @FXML MenuItem btnTipoProducto;
     @FXML MenuItem btnProductos;
+    @FXML MenuItem btnDetalleCompra;
+    @FXML MenuItem btnFactura;
+    @FXML MenuItem btnDetalleFactura;
+    @FXML MenuItem btnTelefonoProveedor;
+    @FXML MenuItem btnEmailProveedor;
         
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -90,5 +95,35 @@ public class MenuPrincipalController implements Initializable {
          if(event.getSource() == btnProductos){
             escenarioPrincipal.MenuProductosView();
          }
+    }
+    @FXML
+    public void cliclDetalleC(ActionEvent event)throws IOException{
+         if(event.getSource() == btnDetalleCompra){
+            escenarioPrincipal.MenuDetalleCompra();
+         }
+    }
+    @FXML
+    public void cliclFac(ActionEvent event)throws IOException{
+         if(event.getSource() == btnFactura){
+            escenarioPrincipal.MenuFactura();
+        }
+    }
+     @FXML
+    public void cliclDF(ActionEvent event)throws IOException{
+         if(event.getSource() == btnDetalleFactura){
+         escenarioPrincipal.MenuDetalleFactura();
+        }
+    }
+    @FXML
+    public void cliclTP(ActionEvent event)throws IOException{
+         if(event.getSource() == btnTelefonoProveedor){
+         escenarioPrincipal.MenuTelefonoProveedor();
+        }
+    }
+     @FXML
+    public void cliclEP(ActionEvent event)throws IOException{
+         if(event.getSource() == btnEmailProveedor){
+         escenarioPrincipal.MenuEmailProveedor();
+        }
     }
 }

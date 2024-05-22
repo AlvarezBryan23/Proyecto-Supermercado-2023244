@@ -43,9 +43,9 @@
             <RowConstraints maxHeight="79.0" minHeight="10.0" prefHeight="71.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Button fx:id="btnReporte" mnemonicParsing="false" prefHeight="46.0" prefWidth="177.0" text="     Reportes" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-            <Button fx:id="btnEditar" mnemonicParsing="false" prefHeight="46.0" prefWidth="177.0" text="       Editar" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-            <Button fx:id="btnEliminar" mnemonicParsing="false" prefHeight="46.0" prefWidth="182.0" text="     Eliminar" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+            <Button fx:id="btnReporte" mnemonicParsing="false" onAction="#reporte" prefHeight="46.0" prefWidth="177.0" text="     Reportes" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+            <Button fx:id="btnEditar" mnemonicParsing="false" onAction="#editar" prefHeight="46.0" prefWidth="177.0" text="       Editar" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+            <Button fx:id="btnEliminar" mnemonicParsing="false" onAction="#eliminar" prefHeight="46.0" prefWidth="182.0" text="     Eliminar" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
             <Button fx:id="btnAgregar" mnemonicParsing="false" onAction="#agregar" prefHeight="39.0" prefWidth="176.0" text="       Agregar" GridPane.halignment="CENTER" />
          </children>
       </GridPane>
