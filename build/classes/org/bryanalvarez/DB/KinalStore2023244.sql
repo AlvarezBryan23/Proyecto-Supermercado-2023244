@@ -1105,7 +1105,7 @@ Delimiter ;
 /*call sp_EliminarEmailProveedor(2);
 call sp_ListarEmailProveedor();*/
 
--- ----------------------------- Editar TelefonoProveedor----------------------------------------------------
+-- ----------------------------- Editar EmailProveedor----------------------------------------------------
 Delimiter $$
 	create procedure sp_EditarEmailProveedor(in codigoEP int, in emailProveedor varchar(50), in descripcion varchar(100), 
     in codigoProveedor int)

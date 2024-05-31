@@ -1105,7 +1105,7 @@ Delimiter ;
 /*call sp_EliminarEmailProveedor(2);
 call sp_ListarEmailProveedor();*/
 
--- ----------------------------- Editar TelefonoProveedor----------------------------------------------------
+-- ----------------------------- Editar EmailProveedor----------------------------------------------------
 Delimiter $$
 	create procedure sp_EditarEmailProveedor(in codigoEP int, in emailProveedor varchar(50), in descripcion varchar(100), 
     in codigoProveedor int)
@@ -1120,3 +1120,75 @@ Delimiter $$
 Delimiter ;
 
 call sp_EditarEmailProveedor(1, 'ulises22@gmail.com', 'Oficial', 4);
+DELIMITER $$
+
+-- -------------------------------- Creacion de triggers ----------------------------------------------------
+DELIMITER $$
+create trigger tr_ActualizaPrecios_After_Insert
+After Insert on DetalleCompra
+for each row
+begin
+    declare totalCompra decimal(10,2);
+    declare cantidad int;
+
+    update Productos
+    set 
+        precioUnitario = (totalCompra / cantidad) * 1.40,
+        precioDocena = (totalCompra / cantidad) * 1.35,
+        precioMayor = (totalCompra / cantidad) * 1.25
+    where codigoProducto = new.codigoProducto;
+end $$
+DELIMITER ;
+
+-- -------------------------------------
+DELIMITER $$
+create trigger tr_DetalleCompra_After_Insert
+After Insert on DetalleCompra
+for each row
+begin
+    declare total decimal(10, 2);
+    
+    select SUM(cantidad * costoUnitario)
+    into total
+    from DetalleCompra
+    where numeroDocumento = new.numeroDocumento;
+
+    update Compras
+    set totalDocumento = total
+    where numeroDocumento = new.numeroDocumento;
+end $$
+DELIMITER ;
+
+-- -------------------------------------------
+DELIMITER $$
+create trigger tr_precioUnitario_Before_Insert
+Before Insert on DetalleFactura
+for each row
+begin
+    declare Detalles decimal(10,2);
+  
+    select precioUnitario into Detalles
+    from Productos
+    where codigoProducto = new.codigoProducto;
+
+    set new.precioUnitario = Detalles;
+end $$
+DELIMITER ;
+
+-- ----------------------------------------------
+DELIMITER $$
+create trigger tr_totalFactura_After_Insert
+After Insert on DetalleFactura
+for each row
+begin
+    declare total decimal(10,2);
+
+    select SUM(D.precioUnitario * D.cantidad) into total
+    from DetalleFactura D
+    where D.numeroFactura = new.numeroFactura;
+
+    update Factura
+    set totalFactura = total
+    where numeroFactura = new.numeroFactura;
+end $$
+DELIMITER ;

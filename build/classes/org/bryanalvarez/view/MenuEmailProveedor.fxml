@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="564.0" prefWidth="1002.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="564.0" prefWidth="1002.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.bryanalvarez.controller.MenuEmailProveedorController">
    <children>
       <ImageView fitHeight="950.0" fitWidth="1000.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -31,13 +31,13 @@
             <RowConstraints maxHeight="79.0" minHeight="10.0" prefHeight="71.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Button fx:id="btnReporte" mnemonicParsing="false" prefHeight="46.0" prefWidth="177.0" text="     Reportes" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-            <Button fx:id="btnEditar" mnemonicParsing="false" prefHeight="46.0" prefWidth="177.0" text="       Editar" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-            <Button fx:id="btnEliminar" mnemonicParsing="false" prefHeight="46.0" prefWidth="182.0" text="     Eliminar" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-            <Button fx:id="btnAgregar" mnemonicParsing="false" prefHeight="39.0" prefWidth="176.0" text="       Agregar" GridPane.halignment="CENTER" />
+            <Button fx:id="btnReporte" mnemonicParsing="false" onAction="#reporte" prefHeight="46.0" prefWidth="177.0" text="     Reportes" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+            <Button fx:id="btnEditar" mnemonicParsing="false" onAction="#editar" prefHeight="46.0" prefWidth="177.0" text="       Editar" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+            <Button fx:id="btnEliminar" mnemonicParsing="false" onAction="#eliminar" prefHeight="46.0" prefWidth="182.0" text="     Eliminar" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+            <Button fx:id="btnAgregar" mnemonicParsing="false" onAction="#agregar" prefHeight="39.0" prefWidth="176.0" text="       Agregar" GridPane.halignment="CENTER" />
          </children>
       </GridPane>
-      <Button fx:id="btnRegresar" layoutX="184.0" layoutY="8.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="69.0">
+      <Button fx:id="btnRegresar" layoutX="184.0" layoutY="8.0" mnemonicParsing="false" onAction="#regresar" prefHeight="46.0" prefWidth="69.0">
          <graphic>
             <ImageView fitHeight="61.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -46,12 +46,12 @@
             </ImageView>
          </graphic>
       </Button>
-      <TableView fx:id="tblProductos" layoutX="151.0" layoutY="289.0" prefHeight="261.0" prefWidth="700.0">
+      <TableView fx:id="tblEmailProveedor" layoutX="151.0" layoutY="289.0" onMouseClicked="#seleccionarDatos" prefHeight="261.0" prefWidth="733.0">
          <columns>
-            <TableColumn fx:id="colCodigoPro" minWidth="74.0" prefWidth="134.0" text="codigoEmailProveedor" />
-            <TableColumn fx:id="colDescripcionP" minWidth="72.0" prefWidth="263.0" text="emailProveedor" />
-            <TableColumn fx:id="colPrecioUP" minWidth="33.0" prefWidth="194.0" text="descripcion" />
-            <TableColumn fx:id="colPrecioDP" minWidth="28.0" prefWidth="103.0" text="codigoProveedor" />
+            <TableColumn fx:id="colCodigoEmailPro" minWidth="74.0" prefWidth="143.0" text="codigoEmailProveedor" />
+            <TableColumn fx:id="colEmailProveedor" minWidth="72.0" prefWidth="254.0" text="emailProveedor" />
+            <TableColumn fx:id="colDescripcion" minWidth="33.0" prefWidth="210.0" text="descripcion" />
+            <TableColumn fx:id="colCodigoProveedor" minWidth="28.0" prefWidth="125.0" text="codigoProveedor" />
          </columns>
       </TableView>
       <GridPane layoutX="160.0" layoutY="116.0" prefHeight="108.0" prefWidth="610.0">
@@ -67,13 +67,13 @@
          </rowConstraints>
          <children>
             <Label prefHeight="17.0" prefWidth="126.0" text="codigoEmailProveedor" />
-            <TextField fx:id="txtCodigoProduc" prefHeight="29.0" prefWidth="47.0" GridPane.columnIndex="1" />
+            <TextField fx:id="txtCodigoEP" prefHeight="29.0" prefWidth="47.0" GridPane.columnIndex="1" />
             <Label prefHeight="17.0" prefWidth="84.0" text="emailProveedor" GridPane.columnIndex="2" />
-            <TextField fx:id="txtPrecioMP" layoutX="116.0" layoutY="10.0" prefHeight="29.0" prefWidth="47.0" GridPane.columnIndex="3" />
+            <TextField fx:id="txtEmailPro" layoutX="116.0" layoutY="10.0" prefHeight="29.0" prefWidth="47.0" GridPane.columnIndex="3" />
             <Label layoutX="10.0" layoutY="16.0" text="codigoProveedor" GridPane.columnIndex="2" GridPane.rowIndex="1" />
             <Label layoutX="10.0" layoutY="16.0" prefHeight="17.0" prefWidth="117.0" text="descripcion" GridPane.rowIndex="1" />
-            <TextField fx:id="txtDescripcionP" layoutX="97.0" layoutY="10.0" prefHeight="27.0" prefWidth="87.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <ComboBox fx:id="cmbCodigoTipoP" layoutX="635.0" layoutY="51.0" prefHeight="25.0" prefWidth="224.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <TextField fx:id="txtDescripcion" layoutX="97.0" layoutY="10.0" prefHeight="27.0" prefWidth="87.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <ComboBox fx:id="cmbCodigoProveedor" layoutX="635.0" layoutY="51.0" prefHeight="25.0" prefWidth="224.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
          </children>
       </GridPane>
    </children>
