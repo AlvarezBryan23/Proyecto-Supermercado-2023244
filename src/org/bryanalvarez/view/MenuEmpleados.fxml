@@ -125,7 +125,7 @@
             <Label contentDisplay="CENTER" layoutX="10.0" layoutY="16.0" prefHeight="17.0" prefWidth="74.0" text="   Apellido" GridPane.columnIndex="4" GridPane.rowIndex="1" />
             <TextField fx:id="txtapellidoEm" cache="true" layoutX="95.0" layoutY="10.0" prefHeight="29.0" prefWidth="47.0" GridPane.columnIndex="5" GridPane.rowIndex="1" />
             <Label prefHeight="17.0" prefWidth="127.0" text="codigoCargoEmpleado" GridPane.rowIndex="1" />
-            <ComboBox fx:id="cmbCodigoCE" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <ComboBox fx:id="cmbCodigoCE" prefHeight="25.0" prefWidth="97.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
    </children>

@@ -55,7 +55,7 @@
             <TableColumn fx:id="colNumeroDocumento" minWidth="47.0" prefWidth="182.0" text="numeroDocumento" />
          </columns>
       </TableView>
-      <GridPane layoutX="161.0" layoutY="180.0" prefHeight="101.0" prefWidth="842.0">
+      <GridPane layoutX="180.0" layoutY="180.0" prefHeight="101.0" prefWidth="644.0">
          <columnConstraints>
             <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="102.0" minWidth="7.0" prefWidth="95.0" />
             <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="179.0" minWidth="10.0" prefWidth="121.0" />
@@ -73,8 +73,8 @@
             <Label layoutX="10.0" layoutY="16.0" prefHeight="17.0" prefWidth="107.0" text="numeroDocumento" GridPane.columnIndex="2" GridPane.rowIndex="1" />
             <Label prefHeight="17.0" prefWidth="58.0" text="cantidad" GridPane.rowIndex="1" />
             <TextField fx:id="txtcantidad" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <ComboBox fx:id="cmbNumeroDocumento" prefHeight="25.0" prefWidth="234.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-            <ComboBox fx:id="cmbCodigoProducto" layoutX="635.0" layoutY="51.0" prefHeight="25.0" prefWidth="224.0" GridPane.columnIndex="3" />
+            <ComboBox fx:id="cmbNumeroDocumento" prefHeight="25.0" prefWidth="79.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <ComboBox fx:id="cmbCodigoProducto" layoutX="635.0" layoutY="51.0" prefHeight="25.0" prefWidth="79.0" GridPane.columnIndex="3" />
          </children>
       </GridPane>
       <GridPane layoutX="332.0" layoutY="88.0" prefHeight="59.0" prefWidth="303.0">

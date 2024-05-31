@@ -55,8 +55,8 @@ create table TelefonoProveedor(
     codigoProveedor int not null,
     primary key PK_codigoTelefono_Proveedor (codigoTelefonoProveedor),
     constraint FK_TelefonoProveedor_Proveedores foreign key TelefonoProveedor(codigoProveedor)
-				references Proveedores(codigoProveedor)
-);
+				references Proveedores(codigoProveedor)on delete cascade on update cascade 
+); 
 
 create table Empleados(
 	codigoEmpleado int not null,
@@ -68,7 +68,7 @@ create table Empleados(
     codigoCargoEmpleado int not null,
     primary key PK_codigoEmpleado (codigoEmpleado),
     constraint FK_Empleados_CargoEmpleado foreign key Empleados(codigoCargoEmpleado)
-				references CargoEmpleado(codigoCargoEmpleado)
+				references CargoEmpleado(codigoCargoEmpleado)on delete cascade on update cascade
 );
 
 create table Factura(
@@ -80,9 +80,9 @@ create table Factura(
     codigoEmpleado int not null,
     primary key PK_numeroFactura (numeroFactura),
     constraint FK_Factura_Clientes foreign key Factura(codigoCliente)
-				references Clientes(codigoCliente),
+				references Clientes(codigoCliente)on delete cascade on update cascade,
 	constraint FK_Factura_Empleados foreign key Factura(codigoEmpleado)
-				references Empleados(codigoEmpleado)
+				references Empleados(codigoEmpleado)on delete cascade on update cascade
 );
 
 create table Productos(
@@ -96,9 +96,9 @@ create table Productos(
     codigoProveedor int not null,
     primary key PK_codigoProducto (codigoProducto),
     constraint FK_Productos_TipoProducto foreign key Productos(codigoTipoProducto)
-				references TipoProducto(codigoTipoProducto),
+				references TipoProducto(codigoTipoProducto)on delete cascade on update cascade,
 	constraint FK_Productos_Proveedores foreign key Productos(codigoProveedor)
-				references Proveedores(codigoProveedor)
+				references Proveedores(codigoProveedor)on delete cascade on update cascade
 );
 
 create table DetalleCompra(
@@ -109,9 +109,9 @@ create table DetalleCompra(
     numeroDocumento int not null,
     primary key PK_codigoDetalleCompra (codigoDetalleCompra),
     constraint FK_DetalleCompra_Productos foreign key (codigoProducto)
-				references Productos(codigoProducto),
+				references Productos(codigoProducto)on delete cascade on update cascade,
 	constraint FK_DetalleCompra_Compras foreign key (numeroDocumento)
-				references Compras(numeroDocumento)
+				references Compras(numeroDocumento)on delete cascade on update cascade
 );
 
 create table DetalleFactura(
@@ -122,9 +122,9 @@ create table DetalleFactura(
     codigoProducto varchar(15) not null,
     primary key PK_codigoDetalleFactura (codigoDetalleFactura),
     constraint FK_DetalleFactura_Factura foreign key (numeroFactura)
-				references Factura(numeroFactura),
+				references Factura(numeroFactura)on delete cascade on update cascade,
 	constraint FK_DetalleFactura_Productos foreign key (codigoProducto)
-				references Productos(codigoProducto)
+				references Productos(codigoProducto)on delete cascade on update cascade
 );
 
 create table EmailProveedor(
@@ -134,7 +134,7 @@ create table EmailProveedor(
     codigoProveedor int not null,
     primary key PK_codigoEmailProveedor (codigoEmailProveedor),
     constraint FK_EmailProveedor_Proveedores foreign key (codigoProveedor)
-				references Proveedores(codigoProveedor)
+				references Proveedores(codigoProveedor)on delete cascade on update cascade
 );
 
 -- -------------------- Procesos de Almacenados ----------------------------------------
@@ -691,7 +691,7 @@ call sp_BuscarProductos(13);
 Delimiter $$
 	create procedure sp_EliminarProductos(in codigoP varchar(15))
 		Begin
-			Delete from Productos 
+			Delete from Productos  
 				where codigoProducto = codigoP;
 		End $$
 Delimiter ;
@@ -780,7 +780,7 @@ Delimiter $$
 		End $$
 Delimiter ;
 
-/*call sp_EliminarDetalleCompra(1);
+/*call sp_EliminarDetalleCompra(2);
 call sp_ListarDetalleCompra();*/
 
 -- ----------------------------- Editar DetalleCompra----------------------------------------------------
@@ -1120,3 +1120,75 @@ Delimiter $$
 Delimiter ;
 
 call sp_EditarEmailProveedor(1, 'ulises22@gmail.com', 'Oficial', 4);
+DELIMITER $$
+
+-- -------------------------------- Creacion de triggers ----------------------------------------------------
+DELIMITER $$
+create trigger tr_ActualizaPrecios_After_Insert
+After Insert on DetalleCompra
+for each row
+begin
+    declare totalCompra decimal(10,2);
+    declare cantidad int;
+
+    update Productos
+    set 
+        precioUnitario = (totalCompra / cantidad) * 1.40,
+        precioDocena = (totalCompra / cantidad) * 1.35,
+        precioMayor = (totalCompra / cantidad) * 1.25
+    where codigoProducto = new.codigoProducto;
+end $$
+DELIMITER ;
+
+-- -------------------------------------
+DELIMITER $$
+create trigger tr_DetalleCompra_After_Insert
+After Insert on DetalleCompra
+for each row
+begin
+    declare total decimal(10, 2);
+    
+    select SUM(cantidad * costoUnitario)
+    into total
+    from DetalleCompra
+    where numeroDocumento = new.numeroDocumento;
+
+    update Compras
+    set totalDocumento = total
+    where numeroDocumento = new.numeroDocumento;
+end $$
+DELIMITER ;
+
+-- -------------------------------------------
+DELIMITER $$
+create trigger tr_precioUnitario_Before_Insert
+Before Insert on DetalleFactura
+for each row
+begin
+    declare Detalles decimal(10,2);
+  
+    select precioUnitario into Detalles
+    from Productos
+    where codigoProducto = new.codigoProducto;
+
+    set new.precioUnitario = Detalles;
+end $$
+DELIMITER ;
+
+-- ----------------------------------------------
+DELIMITER $$
+create trigger tr_totalFactura_After_Insert
+After Insert on DetalleFactura
+for each row
+begin
+    declare total decimal(10,2);
+
+    select SUM(D.precioUnitario * D.cantidad) into total
+    from DetalleFactura D
+    where D.numeroFactura = new.numeroFactura;
+
+    update Factura
+    set totalFactura = total
+    where numeroFactura = new.numeroFactura;
+end $$
+DELIMITER ;

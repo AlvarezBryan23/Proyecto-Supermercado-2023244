@@ -88,8 +88,8 @@
             <TextField fx:id="txtcantidad" layoutX="116.0" layoutY="10.0" prefHeight="29.0" prefWidth="47.0" GridPane.columnIndex="3" />
             <Label layoutX="10.0" layoutY="16.0" text="numeroFactura" GridPane.columnIndex="4" />
             <Label layoutX="10.0" layoutY="16.0" prefHeight="17.0" prefWidth="106.0" text="codigoProducto" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-            <ComboBox fx:id="cmbCodigoProducto" prefHeight="25.0" prefWidth="234.0" GridPane.columnIndex="5" GridPane.rowIndex="1" />
-            <ComboBox fx:id="cmbNumeroFactura" layoutX="635.0" layoutY="51.0" prefHeight="25.0" prefWidth="224.0" GridPane.columnIndex="5" />
+            <ComboBox fx:id="cmbCodigoProducto" prefHeight="25.0" prefWidth="99.0" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+            <ComboBox fx:id="cmbNumeroFactura" layoutX="635.0" layoutY="51.0" prefHeight="25.0" prefWidth="97.0" GridPane.columnIndex="5" />
          </children>
       </GridPane>
    </children>
