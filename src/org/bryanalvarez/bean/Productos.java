@@ -95,6 +95,6 @@ public class Productos {
 
     @Override
     public String toString() {
-        return "│" + getCodigoProducto();
+        return getCodigoProducto() +  "│" + getDescripcionProducto();
     }
 }

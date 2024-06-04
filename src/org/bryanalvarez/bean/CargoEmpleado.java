@@ -45,6 +45,6 @@ public class CargoEmpleado {
 
     @Override
     public String toString() {
-        return  "│" + getCodigoCargoEmpleado();
+        return   getCodigoCargoEmpleado() + "│" + getNombreCargo() + " : " + getDescripcionCargo();
     }
 }

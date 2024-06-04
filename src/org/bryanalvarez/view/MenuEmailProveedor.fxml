@@ -73,7 +73,7 @@
             <Label layoutX="10.0" layoutY="16.0" text="codigoProveedor" GridPane.columnIndex="2" GridPane.rowIndex="1" />
             <Label layoutX="10.0" layoutY="16.0" prefHeight="17.0" prefWidth="117.0" text="descripcion" GridPane.rowIndex="1" />
             <TextField fx:id="txtDescripcion" layoutX="97.0" layoutY="10.0" prefHeight="27.0" prefWidth="87.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <ComboBox fx:id="cmbCodigoProveedor" layoutX="635.0" layoutY="51.0" prefHeight="25.0" prefWidth="82.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <ComboBox fx:id="cmbCodigoProveedor" layoutX="635.0" layoutY="51.0" prefHeight="25.0" prefWidth="224.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
          </children>
       </GridPane>
    </children>

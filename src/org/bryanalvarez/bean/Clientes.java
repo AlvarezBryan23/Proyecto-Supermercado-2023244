@@ -86,6 +86,6 @@ public class Clientes {
 
     @Override
     public String toString() {
-        return "│" + getCodigoCliente();
+        return getCodigoCliente() + "│" +  getNombreCliente() + " " + getApellidoCliente() +  " " + getNITcliente();
     }
 }

@@ -77,7 +77,7 @@ public class Main extends Application {
     }
     public void menuClienteView(){
         try{
-            MenuClientesController menuClientes = (MenuClientesController)cambiarEscena("MenuPrincipalClientes.fxml", 946, 544);
+            MenuClientesController menuClientes = (MenuClientesController)cambiarEscena("MenuPrincipalClientes.fxml", 954, 547);
             menuClientes.setEscenarioPrincipal(this);
         }catch(Exception e){
             e.printStackTrace();
@@ -101,7 +101,7 @@ public class Main extends Application {
     }
         public void MenuEmpleadosView(){
         try{
-             MenuEmpleadosController menuEmpleados = (MenuEmpleadosController)cambiarEscena("MenuEmpleados.fxml", 981, 551);
+             MenuEmpleadosController menuEmpleados = (MenuEmpleadosController)cambiarEscena("MenuEmpleados.fxml", 992, 555);
              menuEmpleados.setEscenarioPrincipal(this);
         }catch(Exception e){
             e.printStackTrace();
@@ -117,7 +117,7 @@ public class Main extends Application {
      }
          public void MenuComprasView(){
          try{
-             MenuComprasController menuCompra = (MenuComprasController)cambiarEscena("MenuCompras.fxml", 900, 500);
+             MenuComprasController menuCompra = (MenuComprasController)cambiarEscena("MenuCompras.fxml", 889, 501);
              menuCompra.setEscenarioPrincipal(this);
         }catch(Exception e){
             e.printStackTrace();

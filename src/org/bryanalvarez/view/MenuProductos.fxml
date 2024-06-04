@@ -74,8 +74,8 @@
             <TextField fx:id="txtDescripcionP" layoutX="97.0" layoutY="10.0" prefHeight="27.0" prefWidth="87.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Label text="existencia" GridPane.columnIndex="2" GridPane.rowIndex="1" />
             <TextField fx:id="txtExistencia" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-            <ComboBox fx:id="cmbCodProv" prefHeight="25.0" prefWidth="104.0" GridPane.columnIndex="5" GridPane.rowIndex="1" />
-            <ComboBox fx:id="cmbCodigoTipoP" layoutX="635.0" layoutY="51.0" prefHeight="25.0" prefWidth="103.0" GridPane.columnIndex="5" />
+            <ComboBox fx:id="cmbCodProv" prefHeight="25.0" prefWidth="225.0" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+            <ComboBox fx:id="cmbCodigoTipoP" layoutX="635.0" layoutY="51.0" prefHeight="25.0" prefWidth="237.0" GridPane.columnIndex="5" />
          </children>
       </GridPane>
       <GridPane layoutX="430.0" layoutY="124.0" prefHeight="69.0" prefWidth="282.0">

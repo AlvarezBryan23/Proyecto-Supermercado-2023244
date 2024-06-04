@@ -54,6 +54,6 @@ public class Compras {
 
     @Override
     public String toString() {
-        return "│" + getNumeroDocumento();
+        return getNumeroDocumento() +  "│" +  getFechaDocumento() +  " : " +  getDescripcion();
     }
 }

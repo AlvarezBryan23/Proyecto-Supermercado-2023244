@@ -104,8 +104,8 @@
       <GridPane layoutX="168.0" layoutY="170.0" prefHeight="136.0" prefWidth="802.0">
          <columnConstraints>
             <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="141.0" minWidth="10.0" prefWidth="141.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="173.0" minWidth="10.0" prefWidth="147.0" />
-            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="102.0" minWidth="7.0" prefWidth="57.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="185.0" minWidth="10.0" prefWidth="185.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="102.0" minWidth="7.0" prefWidth="49.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="179.0" minWidth="10.0" prefWidth="104.0" />
             <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="179.0" minWidth="10.0" prefWidth="101.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="194.0" minWidth="10.0" prefWidth="177.0" />
@@ -125,7 +125,7 @@
             <Label contentDisplay="CENTER" layoutX="10.0" layoutY="16.0" prefHeight="17.0" prefWidth="74.0" text="   Apellido" GridPane.columnIndex="4" GridPane.rowIndex="1" />
             <TextField fx:id="txtapellidoEm" cache="true" layoutX="95.0" layoutY="10.0" prefHeight="29.0" prefWidth="47.0" GridPane.columnIndex="5" GridPane.rowIndex="1" />
             <Label prefHeight="17.0" prefWidth="127.0" text="codigoCargoEmpleado" GridPane.rowIndex="1" />
-            <ComboBox fx:id="cmbCodigoCE" prefHeight="25.0" prefWidth="97.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <ComboBox fx:id="cmbCodigoCE" prefHeight="25.0" prefWidth="203.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
    </children>
