@@ -7,11 +7,11 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="467.0" prefWidth="467.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.bryanalvarez.controller.MenuPrincipalController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="367.0" prefWidth="693.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.bryanalvarez.controller.MenuPrincipalController">
    <children>
-      <ImageView fitHeight="467.0" fitWidth="467.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="382.0" fitWidth="689.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../Images/document.jpg" />
+            <Image url="@../Images/images-YLUWKdeCg-transformed.jpeg" />
          </image>
       </ImageView>
       <MenuBar layoutY="-2.0" prefHeight="25.0" prefWidth="417.0">
@@ -47,7 +47,7 @@
           </Menu>
         </menus>
       </MenuBar>
-      <ImageView fitHeight="138.0" fitWidth="138.0" layoutX="174.0" layoutY="77.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="103.0" fitWidth="102.0" layoutX="590.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Images/Designer.png" />
          </image>

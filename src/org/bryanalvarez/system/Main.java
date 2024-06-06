@@ -59,7 +59,7 @@ public class Main extends Application {
      loader.setBuilderFactory(new JavaFXBuilderFactory());
      loader.setLocation(Main.class.getResource( URLVIEW + fxmlName));
      
-         escena = new Scene((AnchorPane)loader.load(file), width, heigth);
+     escena = new Scene((AnchorPane)loader.load(file), width, heigth);
      escenarioPrincipal.setScene(escena);
      escenarioPrincipal.sizeToScene();
      resultado = (Initializable)loader.getController();
@@ -69,7 +69,7 @@ public class Main extends Application {
     
     public void MenuPrincipalView(){
         try{
-            MenuPrincipalController menuPrincipal = (MenuPrincipalController)cambiarEscena("MenuPrincipalView.fxml", 467, 467);
+            MenuPrincipalController menuPrincipal = (MenuPrincipalController)cambiarEscena("MenuPrincipalView.fxml", 693, 367);
             menuPrincipal.setEscenarioPrincipal(this);
         }catch(Exception e){
             e.printStackTrace();
