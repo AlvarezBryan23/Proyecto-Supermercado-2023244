@@ -3,6 +3,8 @@ import java.net.URL;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,6 +22,7 @@ import org.bryanalvarez.DB.Conection;
 import org.bryanalvarez.bean.Productos;
 import org.bryanalvarez.bean.Proveedores;
 import org.bryanalvarez.bean.TipoProducto;
+import org.bryanalvarez.report.GenerarReportes;
 import org.bryanalvarez.system.Main;
 
 /**
@@ -317,6 +320,9 @@ public class MenuProductosController implements Initializable{
 
     public void reporte(){
         switch(tipoDeOperaciones){
+            case NINGUNO:
+                imprimirReporte();
+                break;
             case ACTUALIZAR:
                 desactivarControles();
                 limpiarControles();
@@ -327,6 +333,12 @@ public class MenuProductosController implements Initializable{
                 tipoDeOperaciones = operaciones.NINGUNO;
                 break;
         }
+    }
+    
+    public void imprimirReporte(){
+        Map parametros = new HashMap();
+        parametros.put("codigoProducto", null);
+        GenerarReportes.mostrarReportes("ReporteProductos.jasper", "Reporte de Productos", parametros);
     }
     
     public void desactivarControles(){

@@ -3,6 +3,8 @@ import java.net.URL;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -19,6 +21,7 @@ import javafx.scene.image.ImageView;
 import javax.swing.JOptionPane;
 import org.bryanalvarez.DB.Conection;
 import org.bryanalvarez.bean.Proveedores;
+import org.bryanalvarez.report.GenerarReportes;
 import org.bryanalvarez.system.Main;
 
 /**
@@ -258,6 +261,9 @@ private ObservableList<Proveedores> listarProveedores;
     
     public void reporte(){
         switch(tipoDeOperaciones){
+            case NINGUNO:
+                 imprimirReporte();
+                break;
             case ACTUALIZAR:
             desactivarControles();
             limpiarControles();
@@ -270,6 +276,12 @@ private ObservableList<Proveedores> listarProveedores;
             tipoDeOperaciones = operaciones.NINGUNO;
             break;
         }
+    }
+    
+    public void imprimirReporte(){
+        Map parametros = new HashMap();
+        parametros.put("codigoProveedor", null);
+        GenerarReportes.mostrarReportes("ReporteProveedores.jasper", "Reporte de Proveedores", parametros);
     }
     
     public void desactivarControles(){
