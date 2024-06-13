@@ -33,8 +33,8 @@
 	<background>
 		<band height="802" splitType="Stretch">
 			<image scaleImage="FillFrame">
-				<reportElement x="0" y="0" width="555" height="802" uuid="669f21af-3e3f-4217-b798-ab728b6a4bd3"/>
-				<imageExpression><![CDATA["C:\\Users\\USUARIO\\Desktop\\Repositorio en Casa\\Proyecto-Supermercado-2023244\\src\\org\\bryanalvarez\\Images\\Reportes.png"]]></imageExpression>
+				<reportElement x="0" y="0" width="555" height="802" uuid="b6beb4e0-0f7b-4037-9783-46676b438a1c"/>
+				<imageExpression><![CDATA["C:\\Users\\Informatica\\Desktop\\Repositorio 2023244\\Proyecto-Supermercado-2023244\\src\\org\\bryanalvarez\\Images\\Reportes.png"]]></imageExpression>
 			</image>
 		</band>
 	</background>
