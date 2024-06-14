@@ -1192,3 +1192,9 @@ begin
     where numeroFactura = new.numeroFactura;
 end $$
 DELIMITER ;
+
+select * from DetalleFactura
+	join Factura on DetalleFactura.numeroFactura = Factura.numeroFactura
+    join Clientes on Factura.codigoCliente = Clientes.codigoCliente
+    join Productos on DetalleFactura.codigoProducto = Productos.codigoProducto
+where Factura.numeroFactura = 10;

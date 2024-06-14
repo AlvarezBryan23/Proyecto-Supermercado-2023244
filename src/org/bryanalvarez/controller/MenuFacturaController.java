@@ -3,6 +3,8 @@ import java.net.URL;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,6 +22,7 @@ import org.bryanalvarez.DB.Conection;
 import org.bryanalvarez.bean.Clientes;
 import org.bryanalvarez.bean.Empleados;
 import org.bryanalvarez.bean.Factura;
+import org.bryanalvarez.report.GenerarReportes;
 import org.bryanalvarez.system.Main;
 
 /**
@@ -304,6 +307,9 @@ public class MenuFacturaController implements Initializable{
          
          public void reporte(){
              switch(tipoDeOperaciones){
+                 case NINGUNO:
+                     imprimirReporte();
+                     break;
                  case ACTUALIZAR:
                 desactivarControles();
                 limpiarControles();
@@ -316,7 +322,12 @@ public class MenuFacturaController implements Initializable{
              }
          }
         
-         
+        public void imprimirReporte(){
+        Map parametros = new HashMap();
+        int factuID = ((Factura)tblFactura.getSelectionModel().getSelectedItem()).getNumeroFactura();
+        parametros.put("factuID", factuID);
+        GenerarReportes.mostrarReportes("ReporteFactura.jasper", "Reporte de Factura", parametros);
+    } 
          
         public void desactivarControles(){
              txtnumeroFac.setEditable(false);
